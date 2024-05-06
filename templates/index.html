@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }</style>
+</head>
+<body>
+    <h1>Notification</h1>
+    <ul>
+        {% for notification in notifications %}
+            <li>
+                {% if notification.action == 'created' %}
+                    File {{ notification.file_path }} has been created.
+                {% elif notification.action == 'modified' %}
+                    File {{ notification.file_path }} has been modified.
+                {% elif notification.action == 'deleted' %}
+                    File {{ notification.file_path }} has been deleted.
+                {% else %}
+                    Unknown action: {{ notification.action }} for file {{ notification.file_path }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
